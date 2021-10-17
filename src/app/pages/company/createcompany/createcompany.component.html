@@ -1,0 +1,19 @@
+<div class="modal-header">
+  Crear Empresa
+</div>
+<div class="modal-body">
+  <div class="fv-row mb-7 fv-plugins-icon-container">
+      <label class="required fw-bold fs-6 mb-2">Nombre</label>
+      <input maxlength="50" type="text" name="desktop" class="form-control form-control-solid mb-3 mb-lg-0" [(ngModel)]="item.name">
+      <div class="fv-plugins-message-container invalid-feedback"></div>
+  </div>
+  <div class="fv-row mb-7 fv-plugins-icon-container">
+      <label class="required fw-bold fs-6 mb-2">RNC</label>
+      <input maxlength="50" type="text" name="desktop" class="form-control form-control-solid mb-3 mb-lg-0" [(ngModel)]="item.rnc">
+      <div class="fv-plugins-message-container invalid-feedback"></div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+  <button class="btn btn-primary" (click)="save()">Guardar</button>
+</div>
