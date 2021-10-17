@@ -19,10 +19,10 @@ export class CompanylistComponent implements OnInit {
   items: Company[];
   config: any;
   constructor(
-    private modalService: NgbModal,private spinner: NgxSpinnerService,
+    private modalService: NgbModal, private spinner: NgxSpinnerService,
     private service: CompanyService,
     private alertService: AlertService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getAll(false);
@@ -31,7 +31,7 @@ export class CompanylistComponent implements OnInit {
   getAll(resetPage: boolean) {
     this.spinner.show();
     if (resetPage) this.page = 1;
-    if (!this.filter.keyword) this.filter.keyword= '';
+    if (!this.filter.keyword) this.filter.keyword = '';
     this.service.getPage(this.filter, this.page).subscribe((res) => {
       this.items = res.data;
       this.config = {
@@ -52,7 +52,7 @@ export class CompanylistComponent implements OnInit {
   }
 
 
-  inactiveCompany(id: number){
+  inactiveCompany(id: number) {
     Swal.fire({
       title: '¿Está seguro?',
       text: '¿Está seguro que desea inactivar la Compania?',
@@ -76,14 +76,14 @@ export class CompanylistComponent implements OnInit {
     });
   }
 
-  updateCompany(id: any){
+  updateCompany(id: any) {
     var modal = this.modalService.open(UpdatecompanyComponent);
     modal.componentInstance.id = id;
     modal.componentInstance.notifyParent.subscribe(() => {
       this.getAll(false);
     });
   }
-  addCompany(){
+  addCompany() {
     var modal = this.modalService.open(CreatecompanyComponent);
     modal.componentInstance.notifyParent.subscribe(() => {
       this.getAll(false);

@@ -1,3 +1,4 @@
+import { ClientClientAdress } from './../../core/ClientClientAdress.model';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -5,6 +6,7 @@ import { AlertService } from 'src/app/modules/shared/services/alert.service';
 import { CompanyService } from '../../company/services/companyservices.service';
 import { Client } from '../models/client.model';
 import { ClientService } from '../services/client.service';
+import { ClientAdress } from '../../clientadress/models/ClientAdress.model';
 
 @Component({
   selector: 'app-clientcreate',
@@ -12,9 +14,12 @@ import { ClientService } from '../services/client.service';
   styleUrls: ['./clientcreate.component.scss']
 })
 export class ClientcreateComponent implements OnInit {
-  item: Client = new Client();
+  item: ClientAdress = new ClientAdress();
+  clientadress: ClientClientAdress = new ClientClientAdress();
   companys: any[] = [];
   count: any;
+  adress: string[] = [];
+  adres: string;
   items: any[] = [];
   @Output() notifyParent: EventEmitter<any> = new EventEmitter();
 
@@ -27,11 +32,10 @@ export class ClientcreateComponent implements OnInit {
     this.getAllcompany();
   }
 
-
   save() {
     if (
-      !this.item.name ||
-      !this.item.idCompany
+      !this.clientadress.name ||
+      !this.clientadress.idCompany
     ) {
       return this.alertService.info(
         'Todos los campos son obligatorios',
@@ -39,12 +43,20 @@ export class ClientcreateComponent implements OnInit {
       );
     }
     this.spinner.show();
-    this.service.createClient(this.item).subscribe(
+    for(let i = 0 ; i < this.adress.length; i++){
+        let adress = this.adress[i];
+        const AdressClient : ClientAdress = {
+          id: 1,
+          adress: adress
+        }
+        this.clientadress.clientAdressList.push(AdressClient);
+    }
+    this.service.createClient(this.clientadress).subscribe(
       (resp) => {
         const tk = () => this.notifyParent.emit();
         setTimeout(tk, 1500);
         this.spinner.hide();
-        this.alertService.success('Empresa creada con exito');
+        this.alertService.success('Cliente creada con exito');
         this.activeModal.close();
       },
       (error) => {
@@ -63,10 +75,14 @@ export class ClientcreateComponent implements OnInit {
     }
   }
 
+  addAdress(event: any)  {
+    this.adress.push(event.target.value);
+  }
 
   closeModal() {
     this.activeModal.close();
   }
+
   getAllcompany() {
     this.spinner.show();
     this.serviceCompany.getAllCompany().subscribe((res) => {

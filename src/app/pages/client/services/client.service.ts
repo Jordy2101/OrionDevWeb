@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { endpoint } from 'src/environments/environment';
+import { ClientClientAdress } from '../../core/ClientClientAdress.model';
 import { Client } from '../models/client.model';
 
 @Injectable({
@@ -25,8 +26,8 @@ export class ClientService {
     return this.http.get<any>(endpoint.client + `/${id}`, { responseType: "json", headers: this.headers });
   }
 
-  createClient(item: Client) {
-    return this.http.post<any>(endpoint.client, item, { responseType: "json", headers: this.headers });
+  createClient(item: ClientClientAdress) {
+    return this.http.post<any>(endpoint.client+ `/CreateClient`, item, { responseType: "json", headers: this.headers });
   }
 
   updateClient(item: Client) {
