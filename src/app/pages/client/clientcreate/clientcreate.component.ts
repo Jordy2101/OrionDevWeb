@@ -56,7 +56,7 @@ export class ClientcreateComponent implements OnInit {
         const tk = () => this.notifyParent.emit();
         setTimeout(tk, 1500);
         this.spinner.hide();
-        this.alertService.success('Cliente creada con exito');
+        this.alertService.success('Cliente creado con exito', 'Creado');
         this.activeModal.close();
       },
       (error) => {

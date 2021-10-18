@@ -147,11 +147,11 @@
                           </div>
                           <div class="menu-item px-3">
                             <a *ngIf="item.isActive" class="dropdown-item m--font-primary cursor menu-link px-3"
-                              (click)="inactiveClient(item.id)" data-kt-users-table-filter="delete_row">Ver direcciones</a>
+                              (click)="openAdress(item.id)" data-kt-users-table-filter="delete_row">Ver direcciones</a>
                           </div>
                           <div class="menu-item px-3">
                             <a *ngIf="item.isActive" class="dropdown-item m--font-primary cursor menu-link px-3"
-                              (click)="inactiveClient(item.id)" data-kt-users-table-filter="delete_row">Crear Direccion</a>
+                              (click)="addAdress(item.id)" data-kt-users-table-filter="delete_row">Crear direcciones</a>
                           </div>
                         </div>
                       </div>

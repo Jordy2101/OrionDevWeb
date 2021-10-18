@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ClienteadresslistComponent } from './clienteadresslist/clienteadresslist.component';
+import { ClientadresscreateComponent } from './clientadresscreate/clientadresscreate.component';
 
 
 
@@ -14,7 +16,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   declarations: [
     ClientlistComponent,
     ClientcreateComponent,
-    ClientupdateComponent
+    ClientupdateComponent,
+    ClienteadresslistComponent,
+    ClientadresscreateComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +33,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ]),
   ], entryComponents: [
     ClientcreateComponent,
-    ClientupdateComponent
+    ClientupdateComponent,
+    ClienteadresslistComponent,
+    ClientadresscreateComponent
   ]
 })
 export class ClientModule { }

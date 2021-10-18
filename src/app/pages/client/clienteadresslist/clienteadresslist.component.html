@@ -1,0 +1,56 @@
+<div class="modal-header">
+  Direcciones
+</div>
+<div class="modal-body">
+  <div class="card-toolbar">
+    <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+      <div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true">
+      </div>
+      <button type="button" class="btn btn-primary" (click)="addAdress()">
+        <span class="svg-icon svg-icon-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)"
+              fill="black"></rect>
+            <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black"></rect>
+          </svg>
+        </span>
+        Crear
+      </button>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer mt-5" id="kt_table_users">
+      <thead>
+        <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
+          <th tabindex="0" aria-controls="kt_table_users" rowspan="1" colspan="1">Cliente</th>
+          <th tabindex="0" aria-controls="kt_table_users" rowspan="1" colspan="1">Empresa</th>
+          <th tabindex="0" aria-controls="kt_table_users" rowspan="1" colspan="1">Fecha Creacion</th>
+          <th tabindex="0" aria-controls="kt_table_users" rowspan="1" colspan="1">Estado</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-600 fw-bold ">
+        <tr class="odd " *ngFor="let item of items| paginate: config">
+          <td>{{item.adress}}</td>
+          <td>{{item.id}}</td>
+          <td>{{item.createDate| date:'mediumDate'}}</td>
+          <td>
+            <span *ngIf="item.isActive" class="badge badge-success">Activo</span>
+            <span *ngIf="!item.isActive" class="badge badge-danger">Inactivo</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row ">
+    <div class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start ">
+    </div>
+    <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end ">
+      <div class="dataTables_paginate paging_simple_numbers " id="kt_table_users_paginate ">
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-danger" (click)="closeModal()">Cerrar</button>
+</div>

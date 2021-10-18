@@ -1,3 +1,4 @@
+import { ClienteadresslistComponent } from './../clienteadresslist/clienteadresslist.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -7,6 +8,7 @@ import { ClientcreateComponent } from '../clientcreate/clientcreate.component';
 import { ClientupdateComponent } from '../clientupdate/clientupdate.component';
 import { Client } from '../models/client.model';
 import { ClientService } from '../services/client.service';
+import { ClientadresscreateComponent } from '../clientadresscreate/clientadresscreate.component';
 
 @Component({
   selector: 'app-clientlist',
@@ -50,7 +52,13 @@ export class ClientlistComponent implements OnInit {
     this.getAll(false);
   }
 
-
+  addAdress(id: any){
+    var modal = this.modalService.open(ClientadresscreateComponent);
+    modal.componentInstance.id = id;
+    modal.componentInstance.notifyParent.subscribe(() => {
+      this.getAll(false);
+    });
+  }
 
   inactiveClient(id: number){
     Swal.fire({
@@ -89,6 +97,12 @@ export class ClientlistComponent implements OnInit {
       this.getAll(false);
     });
   }
-
+  openAdress(id: any){
+    var modal = this.modalService.open(ClienteadresslistComponent);
+    modal.componentInstance.id = id;
+    modal.componentInstance.notifyParent.subscribe(() => {
+      this.getAll(false);
+    });
+  }
 
 }

@@ -40,7 +40,7 @@ export class CreatecompanyComponent implements OnInit {
         const tk = () => this.notifyParent.emit();
         setTimeout(tk, 1500);
         this.spinner.hide();
-        this.alertService.success('Empresa creada con exito');
+        this.alertService.success('Empresa creada con exito','Creado');
         this.activeModal.close();
       },
       (error) => {
